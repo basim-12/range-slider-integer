@@ -5,7 +5,7 @@ const opts = { min:1, max:10 }
 const rsi = range_slider_integer(opts)
 
 document.body.append(rsi)
-},{"..":4}],2:[function(require,module,exports){
+},{"..":3}],2:[function(require,module,exports){
 module.exports = input_integer
 
 const sheet = new CSSStyleSheet()
@@ -86,9 +86,36 @@ function handle_on_mouseleave_and_blur(e, input, min) {
 	if (val < min) input.value = ''
 }
 },{}],3:[function(require,module,exports){
+const range = require('range-slider-basim')
+const input = require('@basim.asim123/input.integer')
+
+module.exports = range_slider_integer
+
+function range_slider_integer (opts) {
+    const el = document.createElement('div')
+    const shadow = el.attachShadow({ mode: 'closed' })
+    
+    const range_slider = range(opts, listen)
+    const input_integer = input(opts, listen)
+
+    output = document.createElement('div')
+    output.innerText = 0
+
+    shadow.append(range_slider, input_integer, output)
+
+    return el
+
+    function listen (message) {
+        const { type, body } = message 
+        if (type == 'update') output.innerText = body 
+        console.log(message)
+
+    }
+}
+},{"@basim.asim123/input.integer":2,"range-slider-basim":4}],4:[function(require,module,exports){
 module.exports = rangeSlider
 
-function rangeSlider(opts) {
+function rangeSlider(opts, notify) {
 
     const { min=1, max=5} = opts
     const el = document.createElement('div') 
@@ -125,6 +152,7 @@ function rangeSlider(opts) {
     function handle_input(e) {
         const val = Number(e.target.value)
         fill.style.width = `${(val/max) * 100}%`
+        notify({type: 'update', body :val})
     }
 }
 
@@ -228,31 +256,4 @@ function get_theme() {
         }
     `
 }
-},{}],4:[function(require,module,exports){
-const range = require('range-slider-basim')
-const input = require('@basim.asim123/input.integer')
-
-module.exports = range_slider_integer
-
-function range_slider_integer (opts) {
-    const el = document.createElement('div')
-    const shadow = el.attachShadow({ mode: 'closed' })
-    
-    const range_slider = range(opts, listen)
-    const input_integer = input(opts, listen)
-
-    output = document.createElement('div')
-    output.innerText = 0
-
-    shadow.append(range_slider, input_integer, output)
-
-    return el
-
-    function listen (message) {
-        const { type, body } = message 
-        if (type == 'update') output.innerText = body 
-        console.log(message)
-
-    }
-}
-},{"@basim.asim123/input.integer":2,"range-slider-basim":3}]},{},[1]);
+},{}]},{},[1]);
