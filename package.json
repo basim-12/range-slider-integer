@@ -1,0 +1,28 @@
+{
+  "name": "range-slider-integer",
+  "version": "0.0.1",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "budo demo/demo.js:bundle.js --live --open",
+    "build": "browserify demo/demo.js > bundle.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/basim-12/range-slider-integer.git"
+  },
+  "author": "basim",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/basim-12/range-slider-integer/issues"
+  },
+  "homepage": "https://github.com/basim-12/range-slider-integer#readme",
+  "devDependencies": {
+    "budo": "^11.8.4"
+  },
+  "dependencies": {
+    "@basim.asim123/input.integer": "^0.0.2",
+    "range-slider-basim": "^0.0.1"
+  }
+}
