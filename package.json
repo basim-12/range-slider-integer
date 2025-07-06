@@ -22,7 +22,7 @@
     "budo": "^11.8.4"
   },
   "dependencies": {
-    "@basim.asim123/input.integer": "^0.0.2",
-    "range-slider-basim": "^0.0.1"
+    "@basim.asim123/input.integer": "^0.0.3",
+    "range-slider-basim": "^0.0.2"
   }
 }
